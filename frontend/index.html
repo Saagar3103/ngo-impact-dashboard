@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NGO Report</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <span class="badge">Impact Reporting Portal</span>
+<h1>Monthly NGO Impact Submission</h1>
+<p class="subtitle">
+  Submit verified monthly operational data including outreach, events, and fund utilization for centralized impact tracking.
+</p>
+
+    <form id="reportForm" class="form-grid">
+
+      <div>
+        <label>NGO ID</label>
+        <input id="ngo_id" required>
+      </div>
+
+      <div>
+        <label>Month</label>
+        <input type="month" id="month" required>
+      </div>
+
+      <div>
+        <label>People Helped</label>
+        <input type="number" id="people">
+      </div>
+
+      <div>
+        <label>Events Conducted</label>
+        <input type="number" id="events">
+      </div>
+
+      <div>
+        <label>Funds Utilized (₹)</label>
+        <input type="number" id="funds">
+      </div>
+
+      <button type="submit">Submit Report</button>
+      <div id="successMessage" class="success-message">
+  Report submitted successfully. The dashboard has been updated.
+</div>
+
+    </form>
+
+    <div class="nav">
+      <a href="dashboard.html">Go to Dashboard →</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.getElementById('reportForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+
+    const data = {
+        ngo_id: document.getElementById('ngo_id').value,
+        month: document.getElementById('month').value,
+        people_helped: parseInt(document.getElementById('people').value),
+        events: parseInt(document.getElementById('events').value),
+        funds: parseInt(document.getElementById('funds').value)
+    };
+
+    await fetch('https://ngo-impact-backend-0dlg.onrender.com/report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+
+    document.getElementById('successMessage').style.display = 'block';
+document.getElementById('reportForm').reset();
+});
+</script>
+
+</body>
+</html>

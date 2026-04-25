@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <span class="badge">Admin Analytics</span>
+<h1>Impact Dashboard</h1>
+<p class="subtitle">
+  Monitor monthly NGO reporting performance with consolidated metrics across people helped, events conducted, and funds utilized.
+</p>
+
+   <div class="dashboard-controls">
+  <input type="month" id="month">
+  <button onclick="loadDashboard()">Generate Summary</button>
+</div>
+
+    <h3 style="margin-top:30px;">Summary Metrics</h3>
+    <p id="emptyState" style="color:#64748b;">
+  Select a month and generate the report to view metrics.
+</p>
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <div class="stat-label">Total NGOs</div>
+        <div class="stat-value" id="total_ngos">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">People Helped</div>
+        <div class="stat-value" id="total_people">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Events</div>
+        <div class="stat-value" id="total_events">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Funds (₹)</div>
+        <div class="stat-value" id="total_funds">0</div>
+      </div>
+
+    </div>
+
+    <div class="nav">
+      <a href="index.html">← Back to Form</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+    async function loadDashboard() {
+    const month = document.getElementById('month').value;
+
+    if (!month) {
+        alert("Please select a month");
+        return;
+    }
+
+    const response = await fetch(`https://ngo-impact-backend-0dlg.onrender.com/dashboard?month=${month}`);
+    const data = await response.json();
+
+    document.getElementById('emptyState').style.display = 'none';
+
+    document.getElementById('total_ngos').innerText = data.total_ngos;
+    document.getElementById('total_people').innerText = data.total_people;
+    document.getElementById('total_events').innerText = data.total_events;
+    document.getElementById('total_funds').innerText = data.total_funds;
+}
+</script>
+
+</body>
+</html>

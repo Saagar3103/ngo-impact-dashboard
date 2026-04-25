@@ -64,19 +64,20 @@ This project demonstrates **end-to-end full-stack development**, including front
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
+
+```text
 ngo-impact-dashboard/
-│
 ├── backend/
-│ ├── app.py
-│ ├── database.db
-│ ├── requirements.txt
-│ └── Procfile
+│   ├── app.py
+│   ├── database.db
+│   ├── requirements.txt
+│   └── Procfile
 │
 ├── frontend/
-│ ├── index.html
-│ ├── dashboard.html
-│ └── style.css
+│   ├── index.html
+│   ├── dashboard.html
+│   └── style.css
 │
 └── README.md
 
@@ -85,7 +86,10 @@ ngo-impact-dashboard/
 
 ## 🚀 Setup Instructions
 
-### 1. Clone Repository
+###
+ 
+ 
+ 1. Clone Repository
 ```bash
 git clone https://github.com/Saagar3103/ngo-impact-dashboard.git
 cd ngo-impact-dashboard
